@@ -1,0 +1,11 @@
+name: GitHub Actions Init Pipeline
+run-name: ${{ github.actor }} is init a pipeline 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: npm install
+      - run: ng lint
