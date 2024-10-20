@@ -1,0 +1,26 @@
+name: GitHub Actions Deploy
+run-name: ${{ github.actor }} deploy 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+
+      - name: Install Angular
+        run: npm install -g @angular/cli@17
+
+      - run: npm install
+
+      - name: Build
+        run: ng build --base-href=/AngularHelloWorld/
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/AngularHelloWorld/browser
